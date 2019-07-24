@@ -57,6 +57,8 @@ NSString * const     kSFOAuthErrorDomain                        = @"com.salesfor
 static NSString * const kSFOAuthEndPointAuthorize               = @"/services/oauth2/authorize";    // user agent flow
 static NSString * const kSFOAuthEndPointToken                   = @"/services/oauth2/token";        // token refresh flow
 
+static NSString * const kSFAppStoreLink   = @"itunes.apple.com"
+
 // Advanced auth constants
 static NSUInteger const kSFOAuthCodeVerifierByteLength          = 128;
 static NSString * const kSFOAuthCodeVerifierParamName           = @"code_verifier";
@@ -901,7 +903,7 @@ static NSString * const kSFECParameter = @"ec";
     } else if ([self isSPAppRedirectURL:requestUrl]){
         [self handleIDPAuthCodeResponse:url];
         decisionHandler(WKNavigationActionPolicyCancel);
-    } else if ([requestUrl containsString:@"itunes.apple.com"]) {
+    } else if ([requestUrl containsString:kSFAppStoreLink]) {
         decisionHandler(WKNavigationActionPolicyCancel);
         [[UIApplication sharedApplication] openURL:url];
     } else {
